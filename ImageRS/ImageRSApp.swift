@@ -12,6 +12,10 @@ struct ImageRSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ImageModel())
+                .onAppear {
+                    UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+                }
         }
     }
 }
