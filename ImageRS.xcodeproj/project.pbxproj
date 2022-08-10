@@ -61,11 +61,11 @@
 		8C0800FD28A31EE600CB916D /* ImageRS */ = {
 			isa = PBXGroup;
 			children = (
+				8C08011828A33E2F00CB916D /* API */,
 				8C08011128A3245100CB916D /* ImageS */,
 				8C08010E28A3211F00CB916D /* Model */,
 				8C08010C28A320A800CB916D /* MobileNetV2.mlmodel */,
-				8C0800FE28A31EE600CB916D /* ImageRSApp.swift */,
-				8C08010028A31EE600CB916D /* ContentView.swift */,
+				8C08011928A37F1C00CB916D /* App */,
 				8C08010228A31EE800CB916D /* Assets.xcassets */,
 				8C08010428A31EE800CB916D /* Preview Content */,
 				8C08011628A3327000CB916D /* ImagePicker.swift */,
@@ -96,6 +96,22 @@
 				8C08011228A3245E00CB916D /* ImageModel.swift */,
 			);
 			path = ImageS;
+			sourceTree = "<group>";
+		};
+		8C08011828A33E2F00CB916D /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8C08011928A37F1C00CB916D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8C0800FE28A31EE600CB916D /* ImageRSApp.swift */,
+				8C08010028A31EE600CB916D /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

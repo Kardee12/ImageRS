@@ -10,7 +10,7 @@ import SwiftUI
 
 class ImageModel: ObservableObject{
     
-    @Published var image: UIImage?
+    @Published var image: UIImage!
     @Published var showPicker: Bool = false
     @Published var source: Picker.Source = .library
     

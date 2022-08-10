@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var im: ImageModel
+    
+
     var body: some View {
         NavigationView{
-            
             VStack{
                 VStack{
                 if let image = im.image{
@@ -19,16 +20,21 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(minWidth: 0, maxWidth: .infinity)
+                        .onAppear{
+                            print("Data:" + mlStuff().detect(img: image))
+                        }
                 }
                 else{
                     Image(systemName: "photo.fill")
                         .resizable()
                         .scaledToFit()
                         .opacity(0.6)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(minWidth: 0, maxWidth: 250, minHeight: 0, maxHeight: 250)
                         .padding(.horizontal)
                 }
                 Spacer()
+                    
+                    
                 }
                 .sheet(isPresented: $im.showPicker, content: {
                     ImagePicker(sourceType: im.source == .library ? .photoLibrary :.camera, selectedImage: $im.image)
@@ -47,6 +53,7 @@ struct ContentView: View {
                         Button {
                             im.source = .library
                             im.showPPicker()
+
                         } label: {
                             Image(systemName: "photo.circle").resizable().frame(width: 50, height: 50, alignment: .center).foregroundColor(.red).padding(.bottom, 20)                        }
                     }
