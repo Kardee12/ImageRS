@@ -7,49 +7,53 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @EnvironmentObject var im: ImageModel
-    
+    @State var stg: String = ""
 
     var body: some View {
-        var stg: String? = nil
         NavigationView{
             VStack{
                 
                 HStack(alignment: .center, spacing: 3, content: {
-                    Button {
-                        im.source = .library
-                        im.showPPicker()
-                        if let image = im.image{
-                            print("Data:" + mlStuff().detect(img: image))
-                        }
-                    } label: {
-                        Image(systemName: "photo.circle").resizable().frame(width: 50, height: 50, alignment: .center).foregroundColor(.red).padding(.bottom, 20)                        }.padding()
+                    
+                    
+                    NavigationLink(destination: WebView(url: URL(string: "https://www.google.com/search?tbm=shop&hl=en&psb=1&q=\(stg)")!), label: {
+                        Image(systemName: "magnifyingglass.circle").resizable().frame(width: 50, height: 50, alignment: .center).padding(.bottom, 20).foregroundColor(.red)
+                        
+                    }).padding()
+                    
                     Spacer()
                     
                     Button {
+                        stg = ""
                         im.source = .camera
                         im.showPPicker()
-                        if let image = im.image{
-                            print("Data:" + mlStuff().detect(img: image))
-                        }
+//                        if let image = im.image{
+//                            stg = mlStuff().detect(img: image)
+//                            print("STG: " + stg)
+//                        }
+
                     } label: {
                         Image(systemName: "camera.circle").resizable().frame(width: 50, height: 50, alignment: .center).padding(.bottom, 20)
                         
                     }.padding()
-                })
+                }
                 
+                
+                )
                 
                 VStack{
                 if let image = im.image{
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-//                        .onAppear{
-//                            //print("Data:" + mlStuff().detect(img: image))
-//                           // stg = mlStuff().detect(img: image)
-//                        }
+                        .frame(minWidth: 0, maxWidth: 250, minHeight: 0, maxHeight: 250)
+                        .onAppear{
+                            stg = mlStuff().detect(img: image)
+                            print("Data:" + stg)
+                        }
                 }
                 else{
                     Image(systemName: "photo.fill")
@@ -58,10 +62,6 @@ struct ContentView: View {
                         .opacity(0.6)
                         .frame(minWidth: 0, maxWidth: 250, minHeight: 0, maxHeight: 250)
                         .padding(.horizontal)
-//                        .onAppear{
-//                            print("Nil")
-//                            stg = ""
-//                        }
                     
                 }
                 Spacer()
@@ -72,23 +72,6 @@ struct ContentView: View {
                 })
                 .navigationTitle("ImageRS")
                 .navigationBarTitleDisplayMode(.large)
-//                .toolbar {
-////                    ToolbarItem(placement: .bottomBar) {
-////                        Button {
-////                            im.source = .camera
-////                            im.showPPicker()
-////                        } label: {
-////                            Image(systemName: "camera.circle").resizable().frame(width: 50, height: 50, alignment: .center).padding(.bottom, 20)                        }
-////                    }
-////                    ToolbarItem(placement: .bottomBar) {
-////                        Button {
-////                            im.source = .library
-////                            im.showPPicker()
-////
-////                        } label: {
-////                            Image(systemName: "photo.circle").resizable().frame(width: 50, height: 50, alignment: .center).foregroundColor(.red).padding(.bottom, 20)                        }
-////                    }
-//                }
         }
     }
 }
